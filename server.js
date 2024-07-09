@@ -1,6 +1,12 @@
 const path = require('path');
+const cors = require('cors');
 const express = require('express');
 const app = express();
+
+app.use(express.urlencoded({ extended: false, limit: '100mb' }));
+app.use(express.json({ limit: '100mb' }));
+app.options('*', cors());
+app.use(cors());
 
 // Socket server
 const { Server } = require("socket.io");
